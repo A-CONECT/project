@@ -43,6 +43,23 @@
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
+
+  <style>
+    abbr {
+        position: relative;
+    }
+    abbr:hover::after {
+        position: absolute;
+        bottom: 100%;
+        left: 100%;
+        display: block;
+        padding: 1em;
+        background: white;
+        content: attr(title);
+        width: fit-content;
+        font-size: 9pt;
+    }
+  </style>
 </head>
 <body>
 
@@ -164,7 +181,7 @@
           <!-- allow="autoplay"></iframe> -->
       </video>
       <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+        Motivated by the clinical finding that frequent conversational interactions may slow down dementia development, we design the A-CONECT chatbot with an end-to-end pipeline including digital-twin simulation, evaluation and design iterations.
       </h2>
     </div>
   </div>
@@ -208,14 +225,29 @@
 
 
 <!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
+<section class="section">
+  <div class="container is-max-desktop">
     <div class="container">
       <!-- Paper video. -->
-      <h2 class="title is-3">Video Demo</h2>
+      <h2 class="title is-3">A-CONECT Chatbot</h2>
+      <p>Evidence from previous research shows that more participation in cognitive, leisure, and social activities correlates
+      with a decreased chance of being diagnosed with dementia diseases.
+      These findings drive the conversational intervention for cognitive diseases.
+      Our proposed method uses a chatbot to resemble the human moderator in dementia intervention and, therefore, should
+      follow the principles of the clinical protocol <a href="https://pubmed.ncbi.nlm.nih.gov/37935416/">(Dodge, <i>et al.</i>, 2023)</a>.</p>
+
+      <p>P1: Cognitively-demanding Conversation Strategies:</p>
+      <li>P1.1: Novel chat experiences.</li>
+      <li>P1.2: Stimulating executive functions.</li>
+      
+      <p>P2: Patient-Friendly Interaction.</p>
+      <li>P2.1: User-friendly interface that does not have any barriers for the oldest adults to use the software/hardware.</li>
+      <li>P2.2: Engaging conversations that should encourage active patient participation.</li>
+      <li>P2.3: Data privacy should be seriously handled towards building trust with users.</li>
+
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          Sample conversation with the I-CONECT chatbot.
+          <b>Sample conversation with the I-CONECT chatbot</b>
           <div class="publication-video">
             <!-- Youtube embed code here -->
             <!-- <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
@@ -227,7 +259,7 @@
       </div>
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          Sample conversations from clinical trial are available at the <a href="https://www.i-conect.org/request-data" target="_blank">I-CONECT project</a> which was used to build Digital Twins.
+          Sample conversations from clinical trial are available at the <a href="https://www.i-conect.org/request-data" target="_blank"><u>I-CONECT project</u></a> which was used to build Digital Twins.
         </div>
       </div>
     </div>
@@ -236,11 +268,103 @@
 <!-- End youtube video -->
 
 
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="content">
+      <h2 class="title is-3">Development Pipeline</h2>
+      <p>
+        The language functionality lies at the core of the proposed conversational chatbot and therefore should be validated
+        before deployment.
+        In this section, we provide an end-to-end pipeline that evaluates and iterates the LLM-based design.
+        The crux of the pipeline is an interactive test environment in which we can probe the capabilities of the chatbot.
+        As outlined in the below figure, the pipeline includes 6 steps.
+        <b>(1)</b> We curate data of conversations between patients and moderators.
+        <b>(2)</b> Then, we utilize the data to create digital twins for each patient.
+        <b>(3)</b> We design the chatbot based on pre-trained LLMs.
+        <b>(4)</b> We simulate conversations between the digital twin and the chatbot.
+        <b>(5)</b> We evaluate the digital twins by examining the symptom similarity between the conversations by digital twins and
+        those by human patients.
+        <b>(6)</b> With the simulated conversations, we evaluate if the chatbot can realize the design principles.
+        Based on the evaluation results, we can iterate or rank design choices in step (3).
+        Finally, we deploy our chatbot in conversations with humans.
+      </p>
+      <img src="./static/images/diagram_human-to-chatbot.png" alt="diagram">
+      <p class="figcaption has-text-centered">
+        The development process of building a chatbot for MCI patients.
+        We collect patients' conversation data from human clinical trials and build digital twins to simulate conversations with the designed chatbot.
+      </p>
+    </div>
+
+  </div>
+</section>
 
 
+<!-- ref: https://bulma.io/documentation/elements/table/ -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content">
+      <h2 class="title is-3">Evaluation of Chatbot in Simulation</h2>
 
+      <p>In the below table, we evaluate the chatbot in conversations with 9 digital twins of patients and report the t-test results on the
+      difference between ChatGPT and our chatbot as moderators.
+      Each digital twin is evaluated with 20 conversations.
+      Across all patients, we observe significant changes in Recall Ratio, Patient/Moderator Word Ratio, and Question Ratio.
+      The changes imply that the chatbot is actively involving the patients in conversation probably by asking more questions.
+      The engagement leads to more cognitively demanding recalling of past experiences and more speeches by the patients.
+      In terms of the fluency of patients or the moderator, there are no significant differences.
+      In other words, the chatbot is as fluent as the ChatGPT.</p>
+      
+<table class="table">
+  <thead>
+    <tr>
+      <th><abbr title="Moderator">Mod</abbr></th>
+      <th><abbr title="Recall Ratio (↑)">RR ↑</abbr></th>
+      <th><abbr title="Pat Fluency Ratio (↑)">P-FR ↑</abbr></th>
+      <th><abbr title="Patient/Moderator Word Ratio (↑)">WR ↑</abbr></th>
+      <th><abbr title="Mod Fluency Ratio (↑)">M-FR ↑</abbr></th>
+      <th><abbr title="Mod Question Ratio (↓)">QR ↓</abbr></th>
+      <!-- <th>Qualification</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ChatGPT</th>
+      <td>0.271</td>
+      <td>0.462</td>
+      <td>0.425</td>
+      <td>0.999</td>
+      <td>0.213</td>
+      <!-- <td>Qualification for the <a
+          href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
+          title="2016–17 UEFA Champions League">Champions League group stage</a></td> -->
+    </tr>
+    <tr>
+      <th>A-CONECT</th>
+      <td><strong>0.423</strong></td>
+      <td>0.421</td>
+      <td><strong>0.701</strong></td>
+      <td>0.999</td>
+      <td><strong>0.616</strong></td>
+      <!-- <td>Relegation to the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship"
+          title="2016–17 Football League Championship">Football League Championship</a></td> -->
+    </tr>
+    <tr>
+      <th>p-value</th>
+      <td><strong>0.001</strong></td>
+      <td>0.212</td>
+      <td><strong>0.014</strong></td>
+      <td>0.859</td>
+      <td><strong>0.000</strong></td>
+      <!-- <td>Relegation to the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship"
+          title="2016–17 Football League Championship">Football League Championship</a></td> -->
+    </tr>
+    </tbody>
+    </table>
+</div>
 
-
+</div>
+</section>
 
 <!-- Paper poster -->
 <!-- <section class="hero is-small is-light">
@@ -248,7 +372,7 @@
     <div class="container">
       <h2 class="title">Poster</h2>
 
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
+      <iframe  src="static/images/diagram_human-to-chatbot.pdf" width="100%" height="550">
           </iframe>
         
       </div>
