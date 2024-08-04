@@ -133,5 +133,21 @@ body {
   font-size: smaller;
 }
 
+.image-row {
+  display: flex;
+  justify-content: space-between;
+}
 
+.image-row img {
+  width: 45%;
+}
 
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.image-grid img {
+  width: 100%;
+}
